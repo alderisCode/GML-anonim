@@ -56,6 +56,10 @@ namespace GML_anonim
             darkGroupBox1.Text = "Zapis do: " + newFileName + ext;
             //timer1.Enabled = true;         
             Application.DoEvents();
+
+            bool multiLine = false;
+            string multiLineText = "";
+
             using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             using (BufferedStream bs = new BufferedStream(fs))
             using (StreamReader sr = new StreamReader(bs))
@@ -65,6 +69,12 @@ namespace GML_anonim
                 while ((line = sr.ReadLine()) != null)
                 {
                     LinesCount++;
+
+                    if (multiLine)
+                    {
+                        line = multiLineText + line;
+                    }
+
 
                     if (line.Contains("<egb:numerKW>") ||
                         line.Contains("<egb:numerElektronicznejKW>") ||
@@ -76,15 +86,39 @@ namespace GML_anonim
                         line.Contains("<egb:imieMatki>") ||
                         line.Contains("<egb:imieOjca>") ||
                         line.Contains("<egb:oznDokumentuStwierdzajacegoTozsamosc>") ||
+                        line.Contains("<egb:kraj>") ||
                         line.Contains("<egb:miejscowosc>") ||
+                        line.Contains("<egb:nazwaMiejscowosci>") ||
+                        line.Contains("<egb:idMiejscowosci>") ||
                         line.Contains("<egb:terytMiejscowosci>") ||
                         line.Contains("<egb:ulica>") ||
+                        line.Contains("egb:nazwaUlicy") ||
+                        line.Contains("<egb:idNazwyUlicy>") ||
                         line.Contains("<egb:terytUlicy>") ||
                         line.Contains("<egb:numerPorzadkowy>") ||
-                        line.Contains("<egb:nrLokalu>")
+                        line.Contains("<egb:nrLokalu>") ||
+                        line.Contains("<egb:plec>") ||
+                        line.Contains("<egb:opisZmiany>") ||
+                        line.Contains("<egb:dodatkoweInformacje>") ||
+                        line.Contains("<egb:dokumentWlasnosci>") || 
+                        line.Contains("<egb:opisDokumentu>")
                         )
                     {
+                        if (!line.Contains("</egb:"))
+                        {
+                            multiLine = true;
+                            multiLineText += line;
+                            continue;
+                        }
+                        else
+                        {
+                            multiLine = false;
+                            multiLineText = "";
+                        }
+
                         line = SetXMLValue(line, "*****");
+
+
                         AnonymCount++;
                     }
 
@@ -107,11 +141,17 @@ namespace GML_anonim
             DarkMessageBox.ShowInformation("Anonimizacja zakończona", "Koniec", DarkDialogButton.Ok);
         }
 
+        // Łączenie tekstu wieloliniowego w jeden ciąg bez znaków nowego wiersza
+        string UsunZnakiNowegoWiersza(string tekst)
+        {
+            return tekst.Replace("\r", "").Replace("\n", "");
+        }
 
         string SetXMLValue(string lineTxt, string Value)
         {
             try
             {
+                UsunZnakiNowegoWiersza(lineTxt);
                 int pos1 = lineTxt.IndexOf('>');                        
                 int pos2 = lineTxt.IndexOf('<', pos1+2);
                 var txt1 = lineTxt.Substring(0, pos1+1);
