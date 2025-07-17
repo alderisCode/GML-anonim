@@ -92,7 +92,7 @@ namespace GML_anonim
                         line.Contains("<egb:idMiejscowosci>") ||
                         line.Contains("<egb:terytMiejscowosci>") ||
                         line.Contains("<egb:ulica>") ||
-                        line.Contains("egb:nazwaUlicy") ||
+                        line.Contains("<egb:nazwaUlicy>") ||
                         line.Contains("<egb:idNazwyUlicy>") ||
                         line.Contains("<egb:terytUlicy>") ||
                         line.Contains("<egb:numerPorzadkowy>") ||
@@ -101,7 +101,9 @@ namespace GML_anonim
                         line.Contains("<egb:opisZmiany>") ||
                         line.Contains("<egb:dodatkoweInformacje>") ||
                         line.Contains("<egb:dokumentWlasnosci>") || 
-                        line.Contains("<egb:opisDokumentu>")
+                        line.Contains("<egb:opisDokumentu>") ||
+                        line.Contains("<egb:numerLokalu>") ||
+                        line.Contains("<egb:kodPocztowy>")
                         )
                     {
                         //DEBUG
