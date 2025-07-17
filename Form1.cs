@@ -104,16 +104,29 @@ namespace GML_anonim
                         line.Contains("<egb:opisDokumentu>")
                         )
                     {
-                        if (!line.Contains("</egb:"))
+                        //DEBUG
+                        //if (line.Length > 200)
+                        //{
+                        //    int a = 0; // Debug breakpoint
+                        //}
+
+                        // jeśli linia jest kompletna
+                        if (line.Contains("</egb:"))
                         {
-                            multiLine = true;
-                            multiLineText += line;
-                            continue;
+                            // jeśli to była multilinia, to kończymy jej składanie
+                            if (multiLine)
+                            {
+                                multiLine = false;
+                                multiLineText = "";
+                            }
+
                         }
                         else
                         {
-                            multiLine = false;
-                            multiLineText = "";
+                            // początek multilinii
+                            multiLine = true;
+                            multiLineText = line;
+                            continue;
                         }
 
                         line = SetXMLValue(line, "*****");
@@ -149,11 +162,17 @@ namespace GML_anonim
 
         string SetXMLValue(string lineTxt, string Value)
         {
+            if (LinesCount == 12015310) 
+            { 
+                var a = 1;                                                      // DEBUG
+            }                      
+
             try
             {
                 UsunZnakiNowegoWiersza(lineTxt);
                 int pos1 = lineTxt.IndexOf('>');                        
-                int pos2 = lineTxt.IndexOf('<', pos1+2);
+                int pos2 = lineTxt.IndexOf('<', pos1);                          // szukamy pierwszego znaku '<' po znaku '>'
+
                 var txt1 = lineTxt.Substring(0, pos1+1);
                 var txt2 = lineTxt.Substring(pos2, lineTxt.Length-pos2);
                 txt2 = String.Concat(txt1, Value, txt2);
@@ -161,7 +180,7 @@ namespace GML_anonim
             }
             catch (Exception e)
             {
-                //DarkMessageBox.ShowWarning(e.Message + "\n\nLinia: " + Liczba(LinesCount) + "\n" + lineTxt, "Błąd podmiany wartości XML", DarkDialogButton.Ok);
+                DarkMessageBox.ShowWarning(e.Message + "\n\nLinia: " + Liczba(LinesCount) + "\n" + lineTxt, "Błąd podmiany wartości XML", DarkDialogButton.Ok);
             }
             return lineTxt;  //wartość niezmieniona
         }
