@@ -1,4 +1,5 @@
 ﻿using DarkUI.Forms;
+using GMLPretty;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -214,6 +215,12 @@ namespace GML_anonim
                 }
             }
             return T;
+        }
+
+        private void darkButton2_Click(object sender, EventArgs e)
+        {
+            AboutForm aboutForm = new AboutForm();
+            aboutForm.ShowDialog();
         }
     }
 

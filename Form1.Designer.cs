@@ -42,6 +42,7 @@ namespace GML_anonim
             this.lbLines = new DarkUI.Controls.DarkLabel();
             this.darkLabel3 = new DarkUI.Controls.DarkLabel();
             this.darkLabel2 = new DarkUI.Controls.DarkLabel();
+            this.darkButton2 = new DarkUI.Controls.DarkButton();
             this.darkGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +58,8 @@ namespace GML_anonim
             // 
             // darkTextBox1
             // 
+            this.darkTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.darkTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.darkTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.darkTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
@@ -68,6 +71,7 @@ namespace GML_anonim
             // 
             // darkButton1
             // 
+            this.darkButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.darkButton1.Location = new System.Drawing.Point(765, 41);
             this.darkButton1.Name = "darkButton1";
             this.darkButton1.Padding = new System.Windows.Forms.Padding(5);
@@ -101,6 +105,8 @@ namespace GML_anonim
             // 
             // darkGroupBox1
             // 
+            this.darkGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.darkGroupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.darkGroupBox1.Controls.Add(this.lbAnon);
             this.darkGroupBox1.Controls.Add(this.lbLines);
@@ -153,11 +159,23 @@ namespace GML_anonim
             this.darkLabel2.TabIndex = 0;
             this.darkLabel2.Text = "Przetworzone linie:";
             // 
+            // darkButton2
+            // 
+            this.darkButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.darkButton2.Location = new System.Drawing.Point(258, 142);
+            this.darkButton2.Name = "darkButton2";
+            this.darkButton2.Padding = new System.Windows.Forms.Padding(5);
+            this.darkButton2.Size = new System.Drawing.Size(23, 22);
+            this.darkButton2.TabIndex = 5;
+            this.darkButton2.Text = "?";
+            this.darkButton2.Click += new System.EventHandler(this.darkButton2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 226);
+            this.Controls.Add(this.darkButton2);
             this.Controls.Add(this.darkGroupBox1);
             this.Controls.Add(this.btnUruchom);
             this.Controls.Add(this.darkButton1);
@@ -186,6 +204,7 @@ namespace GML_anonim
         private DarkUI.Controls.DarkLabel lbLines;
         private DarkUI.Controls.DarkLabel darkLabel3;
         private DarkUI.Controls.DarkLabel darkLabel2;
+        private DarkUI.Controls.DarkButton darkButton2;
     }
 }
 
